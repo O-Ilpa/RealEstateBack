@@ -11,7 +11,7 @@ const propertySchema = new mongoose.Schema(
       unique: true,
     },
     yearBuilt: {
-      type: mongoose.mongoose.Schema.Types.Mixed,  // Can accept either String or Number
+      type: Number,
       required: true,
     },
     category: {
@@ -32,11 +32,11 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
     size: {
-      type: mongoose.mongoose.Schema.Types.Mixed,   
+      type: Number,
       required: true,
     },
     floor: {
-      type: mongoose.mongoose.Schema.Types.Mixed,   
+      type: Number,
       required: true,
     },
     isLastFloor: {
@@ -44,7 +44,7 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
     price: {
-      type: mongoose.Schema.Types.Mixed,   
+      type: Number,
       required: true,
     },
     finishing: {
@@ -52,15 +52,15 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
     rooms: {
-      type: mongoose.Schema.Types.Mixed,   
+      type: Number,
       required: true,
     },
     reception: {
-      type: mongoose.Schema.Types.Mixed,   
+      type: Number,
       required: true,
     },
     bathrooms: {
-      type: mongoose.Schema.Types.Mixed,   
+      type: Number,
       required: true,
     },
     meters: {
@@ -68,7 +68,7 @@ const propertySchema = new mongoose.Schema(
       required: true,
     },
     elevators: {
-      type: mongoose.Schema.Types.Mixed, 
+      type: Number,
       required: true,
     },
     notes: {

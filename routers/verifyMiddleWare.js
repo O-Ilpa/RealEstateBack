@@ -16,6 +16,9 @@ const verifyMiddleWare = async (req, res, next) => {
     if (!decoded) {
       return res.json({ success: false, message: "Unauthorized" });
     }
+    if (decoded.role == "visitor") {
+      return res.json({success: true, message: "Unauthorized"})
+    }
     const user = await User.findById({ _id: decoded.id });
     if (!user) {
       return res.json({ success: false, message: "No user found" }); 

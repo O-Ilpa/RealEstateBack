@@ -28,6 +28,7 @@ app.use("/api/properties", propertyRouter);
 
 mongoose.connect(process.env.DATABASE_URL);
 const db =  mongoose.connection;
-db.on("error", (error) => console.error(error.name));
+db.on("error", (error) => console.error(error.name)); 
 db.once("open", () => console.log("connected to mongoose"));
 app.listen(process.env.PORT || 5000);
+ 

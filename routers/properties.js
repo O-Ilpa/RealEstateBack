@@ -2,7 +2,6 @@ import express from "express";
 import Property from "../models/Property.js";
 import verifyMiddleWare from "./verifyMiddleWare.js";
 import cloudinary from "../utils/cloudinary.js";
-import mappedData from "../extractXlsx.js";
 const app = express();
 
 app.use(express.json());
@@ -72,7 +71,7 @@ router.post("/add", verifyMiddleWare, async (req, res) => {
 
 router.get("/get", async (req, res) => {
   try {
-    const properties = await Property.find({});
+    const properties = await Property.find({}).sort({ createdAt: 1 });
     return res.status(200).json({
       success: true,
       message: "Properties Fetched Succefully",
@@ -112,7 +111,7 @@ router.delete("/del/:id", verifyMiddleWare, async (req, res) => {
   }
   console.timeEnd("deleting Property");
 });
-router.put("/edit/:id", async (req, res) => {
+router.put("/edit/:id", verifyMiddleWare, async (req, res) => {
   try {
     const {
       propertyId,
@@ -188,14 +187,6 @@ router.get("/show/:propertyId", async (req, res) => {
     res.json({ success: false, message: err });
   }
 });
-router.get("/download", async (req, res) => {
-  const properties = await Property.find({});
-  res.json({
-    success: true,
-    message: "all Properties fetched",
-    properties: properties,
-  });
-});
 // const uploadExcel = async () => {
 //   mappedData.map(async (property) => {
 //     console.log('Property data:', property);
@@ -229,10 +220,10 @@ router.get("/download", async (req, res) => {
 //       notes: property.notes,
 //     });
 
-//     await newProperty.save();
+//     await newProperty.save();  
 //   });
 // };
-
+  
 // uploadExcel();
 
 export default router;
